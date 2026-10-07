@@ -53,6 +53,10 @@ hooks/game.tsx               the game itself
 docs/screenshot.png          screenshot used in this README
 ```
 
+## License
+
+[MIT](LICENSE)
+
 ## Disclaimer
 
 An unofficial fan project. Not affiliated with or endorsed by Anthropic. Flappy Bird is a trademark of its respective owner; this project shares only the general game idea.
