@@ -14,15 +14,37 @@ A tiny Flappy Bird clone for [Claude Code](https://claude.com/claude-code), star
 
 ## Install
 
-Flappy Clawd is a Claude Code plugin (a "mod") made of function hooks, written in TypeScript/JSX. It needs a Claude Code build with mod support (the Code tab of the desktop app, or the terminal).
+Flappy Clawd is a Claude Code plugin (a "mod") made of function hooks, written in TypeScript/JSX. It needs a Claude Code build with mod support, in the terminal or in the Code tab of the desktop app. There is nothing to build or install with a package manager: you point Claude Code at the folder.
 
-**Terminal**, from a clone of this repository:
+First, clone the repository:
 
 ```bash
-claude --plugin-dir /path/to/FlappyClawd
+git clone https://github.com/gaelbenoit/flappy-clawd.git
 ```
 
-**Desktop app**: ask Claude Code to build a mod from this folder with hot reloading enabled, or place the folder under your session's dev-mods directory and answer "Enable for this session" when asked.
+### Terminal
+
+Start Claude Code with the folder as a plugin directory. This loads the mod for that session only:
+
+```bash
+claude --plugin-dir /path/to/flappy-clawd
+```
+
+### Desktop app
+
+The desktop app has no command-line flag, so use the `CLAUDE_CODE_PLUGIN_DIRS` environment variable instead. Add it to the `env` block of your user settings file, `~/.claude/settings.json` (on Windows, `C:\Users\<you>\.claude\settings.json`), with the absolute path of the cloned folder:
+
+```json
+{
+  "env": {
+    "CLAUDE_CODE_PLUGIN_DIRS": "C:\\Users\\<you>\\source\\repos\\flappy-clawd"
+  }
+}
+```
+
+Several folders can be listed, separated by your platform's path separator (`;` on Windows, `:` on macOS and Linux). Start a new session and the mod is loaded. In an interactive session, Claude Code watches that folder, so edits to the game reload on their own.
+
+If the mod does not appear, look for a dim line in the transcript naming `flappy-clawd`: it says why a hook or the module failed to load. Running `claude --debug` gives more detail.
 
 ## How to play
 
